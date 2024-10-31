@@ -1,0 +1,60 @@
+---
+title: "Flower Data Analysis Presentation"
+author: "Riya"
+date: "`r Sys.Date()`"
+output:  
+  ioslides_presentation:     
+    css: "floral_styles.css"
+---
+
+## Welcome to Flower Data Analysis 
+
+Today, I'm going to visualize a unique dataset of bee-friendly flowers with Plotly.
+
+
+## Dataset Overview 
+
+The dataset features flowers known for attracting bees. I will examine attributes like bloom color, season, and height.
+
+```{r setup, include=FALSE}
+# Load necessary libraries
+library(plotly)
+library(dplyr)
+```
+
+
+```{r, echo=FALSE}
+# Sample flower dataset
+flower_data <- data.frame(
+  Flower = c("Lavender", "Sunflower", "Bluebell", "Poppy", "Daisy"),
+  Bloom_Color = c("Purple", "Yellow", "Blue", "Red", "White"),
+  Bloom_Season = c("Summer", "Summer", "Spring", "Spring", "Summer"),
+  Height_cm = c(50, 180, 30, 45, 20)
+)
+```
+
+```{r, echo=FALSE}
+# Create the Plotly bar chart
+flower_plot <- plot_ly(
+  flower_data,    
+  x = ~Flower,    
+  y = ~Height_cm,    
+  type = 'bar',    
+  color = ~Bloom_Color,   
+  colors = c("purple", "gold", "cornflowerblue", "salmon", "lightcoral"), # Flower-inspired colors   
+  text = ~paste("Season: ", Bloom_Season),   
+  hoverinfo = 'text' 
+) %>%   
+layout(     
+  title = "Flower Heights by Bloom Color",     
+  title = list(size = 24, color = "indigo"),     
+  xaxis = list(title = "Flower"), # Add title to x-axis
+  yaxis = list(title = "Height (cm)") # Add title to y-axis
+)
+
+# Display the plot
+flower_plot
+```
+
+## Thank You
+Thank you for joining this exploration of bee-friendly 🌺  I hope you enjoyed the insights from this data.
